@@ -64,7 +64,7 @@ echo $total1;
     </table>
 <br><br>
     <a href="next.php">next page -></a>
-
+    <a href="merit.php">merit page -></a>
     <br><br>
 
     <form action="search.php" method="post" onsubmit="return validation()">
@@ -79,6 +79,7 @@ echo $total1;
         <input type="submit" value="top 3" name="submit">
     </form>
     <b><p style="color:red;" id="warn2"></p></b>
+
 </body>
 </html>
 <script>
