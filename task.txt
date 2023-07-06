@@ -1,0 +1,6 @@
+dbname:task2
+tbl : stud->sl,sid,sname
+subj->sl,subid,subname,total_marks
+marks->sl,stud_id,subid,marks,
+(no setup in frontend)
+view : sl(1-10),sname,sub1,sub2..sub5, total
