@@ -19,6 +19,7 @@ include("connection.php");
             <td>mathametics</td>
             <td>physics</td>
             <td>total marks</td>
+            <td>best of three</td>
         </tr>
         <?php 
         $query=mysqli_query($con,"SELECT * FROM `student` ");
@@ -44,6 +45,18 @@ include("connection.php");
             
             <td><?php echo $total;
             ?></td>
+            <!--top three-->
+            <td>
+                <?php
+                    $total1=0;
+            $query4=mysqli_query($con,"SELECT * FROM `marks` where stud_id='$sid' ORDER BY marks DESC limit 3; ");
+while($result4=mysqli_fetch_assoc($query4)){
+ $marks1=$result4['marks'];
+ $total1=$total1+$marks1; 
+}
+echo $total1;
+ ?>
+            </td>
             </tr>
         <?php
         }
@@ -59,6 +72,13 @@ include("connection.php");
         <input type="submit" value="search" name="submit">
     </form>
     <b><p style="color:red;" id="warn"></p></b>
+
+    <br>
+    <form action="top.php" method="post" onsubmit="return validation2()">
+        <input type="text" placeholder="search top three" name="top" id="top">
+        <input type="submit" value="top 3" name="submit">
+    </form>
+    <b><p style="color:red;" id="warn2"></p></b>
 </body>
 </html>
 <script>
@@ -67,6 +87,14 @@ include("connection.php");
         if($search==""){
             text="enter search value";
             document.getElementById("warn").innerHTML=text;
+            return false;
+        }
+    }
+    function validation2(){
+        $top=document.getElementById("top").value;
+        if($top==""){
+            text="enter top 3 value";
+            document.getElementById("warn2").innerHTML=text;
             return false;
         }
     }
