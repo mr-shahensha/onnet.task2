@@ -4,3 +4,5 @@ subj->sl,subid,subname,total_marks
 marks->sl,stud_id,subid,marks,
 (no setup in frontend)
 view : sl(1-10),sname,sub1,sub2..sub5, total
+
+algorithm : SELECT stud_id, SUM(marks) as total FROM `marks` GROUP BY stud_id ORDER BY total desc; 

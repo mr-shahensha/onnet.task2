@@ -51,5 +51,23 @@ include("connection.php");
     </table>
 <br><br>
     <a href="next.php">next page -></a>
+
+    <br><br>
+
+    <form action="search.php" method="post" onsubmit="return validation()">
+        <input type="text" placeholder="search by student id" name="search" id="search">
+        <input type="submit" value="search" name="submit">
+    </form>
+    <b><p style="color:red;" id="warn"></p></b>
 </body>
 </html>
+<script>
+    function validation(){
+        $search=document.getElementById("search").value;
+        if($search==""){
+            text="enter search value";
+            document.getElementById("warn").innerHTML=text;
+            return false;
+        }
+    }
+</script>

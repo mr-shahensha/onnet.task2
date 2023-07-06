@@ -1,3 +1,6 @@
+<?php 
+include("connection.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +20,44 @@
             <td>physics</td>
             <td>total marks</td>
         </tr>
+        <?php 
+        
+        $query=mysqli_query($con,"SELECT stud_id, SUM(marks) as total FROM `marks` GROUP BY stud_id ORDER BY total desc; ");
+        while($result=mysqli_fetch_assoc($query)){
+            $stud_id=$result['stud_id'];
+            $total=$result['total'];
+        ?>
+            <tr>
+            <td><?php echo $stud_id;?></td>
+            <td>
+            <?php 
+            $query3=mysqli_query($con,"select * from student where sid='$stud_id'");
+            while($result3=mysqli_fetch_assoc($query3)){
+                $sname=$result3['student_name'];
+            ?>
+            <?php echo $sname;?></td>
+            <?php 
+       }
+            ?>    
+        
+            </td>
 
+            <?php 
+            $query2=mysqli_query($con,"select * from marks where stud_id='$stud_id'");
+            while($result2=mysqli_fetch_assoc($query2)){
+                $marks=$result2['marks'];
+            ?>
+            <td><?php echo $marks;?></td>
+            <?php 
+       }
+            ?>
+            
+            <td><?php echo $total;
+            ?></td>
+            </tr>
+        <?php
+        }
+        ?>
     </table>
 </body>
 </html>
