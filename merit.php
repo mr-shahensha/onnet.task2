@@ -16,10 +16,10 @@ include("connection.php");
             <td>student name</td>
         </tr>
         <?php 
-        $query=mysqli_query($con,"SELECT stud_id, SUM(marks) as total FROM `marks` GROUP BY stud_id ORDER BY total desc limit 3; ");
+        $query=mysqli_query($con,"SELECT stud_id, sum(marks) as summ_mrks from( select stud_id,marks ,row_number() over (PARTITION by stud_id order by marks desc)  as rank from marks) as ranked_marks where rank<=3 GROUP BY stud_id ORDER by summ_mrks desc; ");
         while($result=mysqli_fetch_assoc($query)){
             $sid=$result['stud_id'];
-            $marks=$result['total'];
+            $marks=$result['summ_mrks'];
         ?>
             <tr>
             <td><?php echo $sid;?></td>
@@ -31,16 +31,5 @@ include("connection.php");
         ?>
     </table>
     
-    <?php
-    $query1=mysqli_query($con,"SELECT SUM(marks) as total, stud_id as id FROM marks group by id ORDER BY total DESC limit 3;
-    ");
-    while($result2=mysqli_fetch_assoc($query1)){
-        $std=$result2['total'];
-        
-        echo $std;
-        echo "<br>";
-    }
-    
-    ?>
 </body>
 </html>
