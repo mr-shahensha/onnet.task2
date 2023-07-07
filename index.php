@@ -50,37 +50,37 @@ include("connection.php");
                 <?php
                     $total1=0;
             $query4=mysqli_query($con,"SELECT * FROM `marks` where stud_id='$sid' ORDER BY marks DESC limit 3; ");
-while($result4=mysqli_fetch_assoc($query4)){
- $marks1=$result4['marks'];
- $total1=$total1+$marks1; 
-}
-echo $total1;
- ?>
-            </td>
+                while($result4=mysqli_fetch_assoc($query4)){
+                $marks1=$result4['marks'];
+                $total1=$total1+$marks1; 
+                }
+                echo $total1;
+                ?>
+                            </td>
             </tr>
         <?php
         }
         ?>
     </table>
-<br><br>
-    <a href="next.php">next page -></a>
-    <a href="merit.php">merit page -></a>
     <br><br>
+        <a href="next.php">next page -></a>
+        <a href="merit.php">merit page -></a>
+        <br><br>
 
-    <form action="search.php" method="post" onsubmit="return validation()">
-        <input type="text" placeholder="search by student id" name="search" id="search">
-        <input type="submit" value="search" name="submit">
-    </form>
-    <b><p style="color:red;" id="warn"></p></b>
+        <form action="search.php" method="post" onsubmit="return validation()">
+            <input type="text" placeholder="search by student id" name="search" id="search">
+            <input type="submit" value="search" name="submit">
+        </form>
+        <b><p style="color:red;" id="warn"></p></b>
 
-    <br>
-    <form action="top.php" method="post" onsubmit="return validation2()">
-        <input type="text" placeholder="search top three" name="top" id="top">
-        <input type="submit" value="top 3" name="submit">
-    </form>
-    <b><p style="color:red;" id="warn2"></p></b>
+        <br>
+        <form action="top.php" method="post" onsubmit="return validation2()">
+            <input type="text" placeholder="search top three" name="top" id="top">
+            <input type="submit" value="top 3" name="submit">
+        </form>
+        <b><p style="color:red;" id="warn2"></p></b>
 
-</body>
+    </body>
 </html>
 <script>
     function validation(){

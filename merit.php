@@ -32,7 +32,8 @@ include("connection.php");
     </table>
     
     <?php
-    $query1=mysqli_query($con,"SELECT top 3 SUM(marks) as total FROM `marks`  group by stud_id ORDER BY total DESC limit 3;");
+    $query1=mysqli_query($con,"SELECT SUM(marks) as total, stud_id as id FROM marks group by id ORDER BY total DESC limit 3;
+    ");
     while($result2=mysqli_fetch_assoc($query1)){
         $std=$result2['total'];
         
